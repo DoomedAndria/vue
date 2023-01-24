@@ -1,16 +1,16 @@
+<script setup>
+import HorisontalMenu from "./HorisontalMenu.vue"
+
+const listItems = ["Home","TOS","About","Contact","rame"]
+
+</script>
+
 <template>
-  <input type="text">
-  <button>Add</button>
-  <List></List>
+  <HorisontalMenu :items="listItems"></HorisontalMenu>
 </template>
 
 
-<script setup>
-import List from "./List.vue"
 
-
-
-</script>
 
 
 
