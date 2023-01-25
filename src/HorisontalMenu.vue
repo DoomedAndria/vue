@@ -7,7 +7,7 @@ export default{
 <template>
     <div class="nav">
         <ul>
-            <li v-for="item in items">  <a href="#">{{ item }}</a> </li>
+            <li v-for="item in items" :key="item.id">  <a :href="item.url">{{ item.name }}</a> </li>
         </ul>
     </div>
     
