@@ -1,13 +1,20 @@
 <script>
 export default{
-    props:{items: Array}
+    props:{items: Array},
+    methods:{
+        mouseClick: (e)=>{
+            console.log(e.target.href,e.target.innerHTML)
+        }
+    }
 }
 </script>
 
 <template>
     <div class="nav">
         <ul>
-            <li v-for="item in items" :key="item.id">  <a :href="item.url" target="_blank"> {{ item.name }} </a> </li>
+            <li v-for="item in items" :key="item.id" >
+                <a :href="item.url" @click.prevent="mouseClick" target="_blank"> {{ item.name }} </a>
+            </li>
         </ul>
     </div>
     
