@@ -16,6 +16,11 @@ const listItems = [
                   id: 3,
                   name:"Yandex",
                   url:"https://yandex.com/"
+                },
+                {
+                  id: 4,
+                  name:"DuckDuckGo",
+                  url:"https://duckduckgo.com/"
                 },      
               ]
 
