@@ -1,10 +1,20 @@
 <script>
 export default{
     props:{items: Array},
-    methods:{
-        mouseClick: (e)=>{
-            console.log(e.target.href,e.target.innerHTML)
+
+    data(){
+        return{
+            show: false,
+            description:"",
         }
+    },
+    methods:{
+        mouseClick: function(e){
+            this.show = true
+            let id = e.target.parentNode.id
+            let item  = this.items.find(e => e.id == id)
+            this.description = item.description            
+        },
     }
 }
 </script>
@@ -12,10 +22,13 @@ export default{
 <template>
     <div class="nav">
         <ul>
-            <li v-for="item in items" :key="item.id" >
+            <li v-for="item in items" :key="item.id" :id="item.id" >
                 <a :href="item.url" @click.prevent="mouseClick" target="_blank"> {{ item.name }} </a>
             </li>
         </ul>
+    </div>
+    <div class="desc-cont" v-if="show">
+        <p >{{ description }}</p>
     </div>
     
 </template>
@@ -41,7 +54,7 @@ export default{
 .nav li{
     padding: 0.5rem;
     border-radius: 20px;
-    font-weight: 450;
+    font-weight: 550;
     font-size: 25px;
     transition: all 0.35s;
 }
@@ -59,5 +72,17 @@ export default{
     display: flex;
     align-items: center;
     padding: 0.25rem;
+}
+
+.desc-cont{
+    width: 40vw;
+    padding: 10px;
+    margin: 20px 5px;
+    background-color: lightcyan;
+    border: 2px solid midnightblue;
+    border-radius: 10px;
+    font-size: 20px;
+    color: navy;
+    font-weight: 400;
 }
 </style>
