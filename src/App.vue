@@ -8,7 +8,9 @@ export default{
     }
   },
   computed:{
-    
+    computeArea(){
+      return this.width * this.height
+    }
   }
 }
 
@@ -26,6 +28,8 @@ export default{
       <br/>
       <label >color</label><br/>
       <input  v-model="color" type="color"><br/>
+
+      <p>Area: {{computeArea}}</p>
 
     </div>
 
