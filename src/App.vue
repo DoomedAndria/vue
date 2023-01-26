@@ -4,6 +4,7 @@ export default{
     return{
       width:null,
       height:null,
+      color:null
     }
   },
   computed:{
@@ -22,10 +23,13 @@ export default{
       <br/>
       <label >Height (px)</label><br/>
       <input  v-model="height" type="text"><br/>
+      <br/>
+      <label >color</label><br/>
+      <input  v-model="color" type="color"><br/>
 
     </div>
 
-    <div v-bind:style="{ width: width + 'px',height: height + 'px'}" class="default">
+    <div v-bind:style="{ width: width + 'px',height: height + 'px' ,backgroundColor:color}" class="default">
 
     </div>
   </div>
