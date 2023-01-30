@@ -9,6 +9,7 @@ export default{
         return{
             id: this.items.length + 1,
             inptVal: "",
+            keyWord: "",
         }
     },
 
@@ -36,10 +37,20 @@ export default{
         },
 
         inptCheck: function(e){
-            let id = e.target.parentNode.getAttribute("item_id") 
+            let id = e.target.parentNode.parentNode.getAttribute("item_id")
             let i  = this.items.indexOf(this.items.find(a => a.id == id)) 
             this.completed.push(this.items.splice(i,1)[0])
         },
+
+        filtered:function(e){
+            console.log(this.items.filter(a => a.name.includes(this.keyWord)))
+            return this.items.filter(a => a.name.toLowerCase().includes(this.keyWord.toLowerCase()))
+        },
+
+        filterTodo: function(e){
+            this.keyWord = e.target.value
+        }
+    
     }
 }
 </script>
@@ -48,12 +59,13 @@ export default{
     <div class="todo-cont">
         <h2>To Do List</h2>
         <div>
-            <input type="text" @change="inptChange" ref="inpt">
+            <input type="text" @change="inptChange" ref="inpt" placeholder="Add ToDo">
+            
             <button @click="addToDo" >add</button>
         </div>
-        
+        <input type="text" placeholder="search" @input="filterTodo">
         <ul>
-            <li v-for="item in items" :key="item.id" :item_id="item.id">
+            <li v-for="item in filtered()" :key="item.id" :item_id="item.id">
                 <div @click="inptCheck" class="check"><i class="gg-check-r"></i></div> {{ item.name }}
             </li>
         </ul>

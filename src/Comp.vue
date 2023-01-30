@@ -1,11 +1,24 @@
 <script>
 export default{
-    props:{completed: Array},
+    props:{
+        items: Array,
+        completed: Array
+    },
+    data:function(){
+        return{
+           
+        }
+    },
     methods:{
         deleteCompItem:function(e){
-            let id = e.target.parentNode.getAttribute("item_id")
+            let id = e.target.parentNode.parentNode.getAttribute("item_id")
             let i = this.completed.indexOf(this.completed.find(c => c.id == id))
             this.completed.splice(i,1)
+        },
+        undoComp: function(e){
+            let id = e.target.parentNode.parentNode.parentNode.getAttribute("item_id")
+            let i = this.completed.indexOf(this.completed.find(c => c.id == id))
+            this.items.push(this.completed.splice(i,1)[0])
         }
     }
 
@@ -16,12 +29,18 @@ export default{
 <template>
     <div class="comp-cont">
         <h2>Completed List</h2>
+        
         <ul>
             <li v-for="item in completed" :key="item.id" :item_id="item.id">
                 {{ item.name }}
-                <div @click="deleteCompItem">
-                    <i class="gg-trash"></i>
-                </div>
+                <div class="bts">
+                    <div @click="undoComp">
+                        <i class="gg-undo"></i>               
+                    </div>
+                    <div @click="deleteCompItem">
+                        <i class="gg-trash"></i>
+                    </div>
+                </div>    
             </li>
         </ul>
     </div>
@@ -29,6 +48,7 @@ export default{
 
 <style scoped>
 @import url('https://css.gg/trash.css');
+@import url('https://css.gg/undo.css');
 .comp-cont{
     display: flex;
     flex-direction: column;
@@ -70,8 +90,20 @@ li{
     background-color: rgba(60, 179, 114, 0.207);
 }
 i{
-    color: crimson;
     cursor: pointer;
+}
+.gg-trash{
+    color: crimson;
+}
+
+.gg-undo{
+    margin-top: 3px;
+    color: orangered;
+}
+.bts{
+    padding: 5px;
+    display: flex;
+    gap: 20px;
 }
 
 </style>

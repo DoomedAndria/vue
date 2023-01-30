@@ -1,6 +1,6 @@
 <script >
- import ToDo from "./ToDo.vue"
- import Comp from "./Comp.vue"
+import ToDo from "./ToDo.vue"
+import Comp from "./Comp.vue"
 export default{
 
   components: {ToDo,Comp},
@@ -30,14 +30,15 @@ export default{
 
       ]
     }
-  }
+  },
+  
 }
 </script>
 
 <template>
   <div class="container">
     <ToDo :items="todoList" :completed="completedList"></ToDo>
-    <Comp :completed="completedList"></Comp>
+    <Comp :items="todoList" :completed="completedList"></Comp>
   </div>
  
 </template>
