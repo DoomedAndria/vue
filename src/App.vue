@@ -7,6 +7,7 @@ export default{
     return {
       url: 'https://items.magischer.de/api/products',
       page: 1, 
+      lastA:0,
       limit: 4,
       limits: [4,8,12,16,20],
       lang:"en",
@@ -29,6 +30,7 @@ export default{
       this.dta = response.data.data
 
       this.page = response.data.current_page
+      this.lastA = response.data.last_page
 
       this.next = response.data.next_page_url
       this.prev = response.data.prev_page_url
@@ -59,10 +61,10 @@ export default{
     </div>
     <div class="conf">
       <div>
-        <button :disabled="this.first?false:true" @click="getData(this.first)">&lt;&lt;</button>
+        <button :disabled="(this.page!=1)?false:true" @click="getData(this.first)">&lt;&lt;</button>
         <button :disabled="this.prev?false:true" @click="getData(this.prev)">&lt;</button>
         <button :disabled="this.next?false:true" @click="getData(this.next)">&gt;</button>
-        <button :disabled="this.last?false:true" @click="getData(this.last)">&gt;&gt;</button>
+        <button :disabled="(this.page!=this.lastA)?false:true" @click="getData(this.last)">&gt;&gt;</button>
       </div>
 
       <br>
