@@ -11,7 +11,7 @@ export default{
     },
     methods:{
         deleteCompItem:function(e){
-            let id = e.target.parentNode.parentNode.getAttribute("item_id")
+            let id = e.target.parentNode.parentNode.parentNode.getAttribute("item_id")
             let i = this.completed.indexOf(this.completed.find(c => c.id == id))
             this.completed.splice(i,1)
         },
